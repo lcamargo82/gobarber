@@ -7,7 +7,7 @@ import IUsersRepository from '../repositories/IUsersRepository';
 import AppError from '@shared/errors/AppError';
 import User from '../infra/typeorm/entities/Users';
 
-interface IRequest {
+interface Request {
   user_id: string;
   avatarFilename: string;
 }
@@ -18,7 +18,7 @@ class UpdateUserAvatarService {
     @inject('UsersRepository') private usersRepository: IUsersRepository,
   ) {}
 
-  public async execute({ user_id, avatarFilename }: IRequest): Promise<User> {
+  public async execute({ user_id, avatarFilename }: Request): Promise<User> {
     const user = await this.usersRepository.findById(user_id);
 
     if (!user) {
