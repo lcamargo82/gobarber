@@ -1,7 +1,7 @@
 import { Request, Response } from 'express';
 import { container } from 'tsyringe';
+import { classToClass } from 'class-transformer';
 
-import UsersRepository from '../../typeorm/repositories/UsersRepository';
 import AuthenticateUserService from '@modules/users/services/AuthenticateUserService';
 
 class SessionsController {
@@ -15,7 +15,7 @@ class SessionsController {
       password,
     });
 
-    return response.json({ user, token });
+    return response.json({ user: classToClass(user), token });
   }
 }
 
